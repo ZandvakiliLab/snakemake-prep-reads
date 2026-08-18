@@ -163,6 +163,12 @@ properties:
           extra:
             type: string
             description: additional arguments to pass to DeepTools bamCoverage
+      deeptools_plotcoverage:
+        type: object
+        properties:
+          extra:
+            type: string
+            description: additional arguments to pass to DeepTools plotCoverage
     required:
       - gffread
       - rseqc_infer_experiment

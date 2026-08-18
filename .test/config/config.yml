@@ -59,6 +59,8 @@ mapping_stats:
   deeptools_coverage:
     genome_size: 1000
     extra: ""
+  deeptools_plotcoverage:
+    extra: ""
 
 variant_calling:
   tool: "freebayes"
