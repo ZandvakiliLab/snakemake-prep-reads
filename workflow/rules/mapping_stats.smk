@@ -109,6 +109,7 @@ rule deeptools_plotcoverage:
         metrics="results/deeptools/coverage/{sample}_coverage.metrics",
     log:
         "results/deeptools/coverage/{sample}_coverage.log",
+    threads: 4
     params:
         extra="--coverageThresholds 1",
     wrapper:
