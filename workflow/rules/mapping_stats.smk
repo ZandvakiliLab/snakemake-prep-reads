@@ -97,3 +97,20 @@ rule deeptools_coverage:
         "generate normalized coverage files using deeptools"
     wrapper:
         "v5.6.0/bio/deeptools/bamcoverage"
+
+
+rule deeptools_plotcoverage:
+    input:
+        bams="results/samtools/sort/{sample}.bam",
+        bais="results/samtools/sort/{sample}.bam.bai",
+    output:
+        plot="results/deeptools/coverage/{sample}_coverage.png",
+        raw_counts="results/deeptools/coverage/{sample}_coverage.raw",
+        metrics="results/deeptools/coverage/{sample}_coverage.metrics",
+    log:
+        "results/deeptools/coverage/{sample}_coverage.log",
+    threads: 4
+    params:
+        extra="--coverageThresholds 1",
+    wrapper:
+        "v5.6.0/bio/deeptools/plotcoverage"

@@ -99,6 +99,11 @@ def get_multiqc_input(wildcards):
         sample=samples.index,
     )
     result += expand(
+        "results/deeptools/coverage/{sample}_coverage.{ext}",
+        sample=samples.index,
+        ext=["png", "raw", "metrics"],
+    )
+    result += expand(
         "results/{caller}/call/{sample}{ext}",
         sample=samples.index,
         caller=config["variant_calling"]["tool"],
