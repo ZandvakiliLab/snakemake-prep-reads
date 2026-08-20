@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.8.0](https://github.com/MPUSP/snakemake-simple-mapping/compare/v1.7.2...v1.8.0) (2026-08-20)
+
+
+### Features
+
+* added rule to calculate coverage stats ([1796ecf](https://github.com/MPUSP/snakemake-simple-mapping/commit/1796ecf6843d4d1ea12e7bb74f6082197e289171))
+* added rule to calculate coverage stats ([5702630](https://github.com/MPUSP/snakemake-simple-mapping/commit/5702630e2352c385ccac2b209c66889430fbf4bc))
+
+
+### Bug Fixes
+
+* added threads ([b57ed9c](https://github.com/MPUSP/snakemake-simple-mapping/commit/b57ed9cf5db909f85bb9be36d63e5498fbebb734))
+
 ## [1.7.2](https://github.com/MPUSP/snakemake-simple-mapping/compare/v1.7.1...v1.7.2) (2026-07-15)
 
 
