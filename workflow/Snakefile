@@ -6,7 +6,8 @@ configfile: "config/config.yml"
 # load rules
 # -----------------------------------------------------
 include: "rules/common.smk"
-include: "rules/process_reads.smk"
+include: "rules/trim.smk"
+include: "rules/umi_extraction.smk"
 include: "rules/qc.smk"
 
 

@@ -27,6 +27,26 @@ properties:
     required:
       - tool
 
+  umi_extraction:
+    type: object
+    properties:
+      enabled:
+        type: boolean
+        description: whether to enable UMI extraction
+        default: false
+      tool:
+        type: string
+        description: UMI extraction tool to use, one of 'umi_tools'
+        default: umi_tools
+      umi_tools:
+        type: object
+        properties:
+          extra:
+            type: string
+            description: additional arguments to pass to umi_tools extract
+    required:
+      - enabled
+
   qc:
     type: object
     properties:

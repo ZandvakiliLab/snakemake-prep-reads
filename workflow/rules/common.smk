@@ -39,13 +39,21 @@ def get_fastq(wildcards):
         return input_dir / file
 
 
-# get pairs of fastq files for fastp
+# get pairs of fastq files for trimming
 def get_fastq_pairs(wildcards):
-    return expand(
-        "results/get_fastq/{sample}_{read}.fastq.gz",
-        sample=wildcards.sample,
-        read=["read1", "read2"] if is_paired_end() else ["read1"],
-    )
+    if config["umi_extraction"]["enabled"]:
+        return expand(
+            "results/{tool}/extract/{sample}_{read}.fastq.gz",
+            sample=wildcards.sample,
+            read=["read1", "read2"] if is_paired_end() else ["read1"],
+            tool=config["umi_extraction"]["tool"]
+        )
+    else:
+        return expand(
+            "results/get_fastq/{sample}_{read}.fastq.gz",
+            sample=wildcards.sample,
+            read=["read1", "read2"] if is_paired_end() else ["read1"],
+        )
 
 
 # get input for multiqc
