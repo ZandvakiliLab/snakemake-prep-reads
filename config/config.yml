@@ -1,98 +1,14 @@
 samplesheet: "config/samples.tsv"
 
-get_genome:
-  database: "ncbi"
-  assembly: "GCF_000307535.1"
-  fasta: Null
-  gff: Null
-  gff_source_type:
-    [
-      "RefSeq": "gene",
-      "RefSeq": "pseudogene",
-      "RefSeq": "CDS",
-      "Protein Homology": "CDS",
-    ]
-
-processing:
+trimming:
   tool: "fastp"
   fastp:
     extra: ""
   fastplong:
     extra: ""
 
-mapping:
-  tool: "bwa_mem2"
-  bowtie2:
-    index: ""
-    extra: ""
-  bwa_mem2:
-    extra: ""
-    sort: "samtools"
-    sort_order: "coordinate"
-    sort_extra: ""
-  star:
-    index: ""
-    extra:
-      [
-        "--outFilterMultimapNmax 10",
-        "--outSAMmultNmax 1",
-        "--outMultimapperOrder Random",
-        "--alignIntronMax 1",
-      ]
-  minimap2:
-    index: ""
-    extra: "-ax map-ont"
-    sorting: "coordinate"
-    sort_extra: ""
-  samtools_sort:
-    extra: "-m 4G"
-  samtools_index:
-    extra: ""
-
-mapping_stats:
-  gffread:
-    extra: ""
-  rseqc_infer_experiment:
-    extra: ""
-  rseqc_bam_stat:
-    extra: ""
-  deeptools_coverage:
-    genome_size: 1000
-    extra: ""
-  deeptools_plotcoverage:
-    extra: ""
-
-variant_calling:
-  tool: "freebayes"
-  bcftools_pileup:
-    uncompressed: False
-    extra: "--max-depth 1000 --min-BQ 20"
-  bcftools_call:
-    uncompressed: False
-    caller: "-c"
-    extra: ""
-  bcftools_view:
-    extra: ""
-  bcftools_filter:
-    filter: '-e ''ALT="."'''
-    extra: ""
-  freebayes:
-    extra: "--ploidy 1 --min-base-quality 20 --min-alternate-fraction 0.75"
-
-variant_annotation:
-  tool: "vep"
-  vep:
-    convert_gff: True
-    plugins: []
-    extra: "--everything --species custom_bacteria --distance 0"
-  snpeff:
-    extra: "-nodownload -ud 0"
-
 qc:
   multiqc:
     extra: "--verbose --dirs"
   fastqc:
     extra: "--quiet"
-
-report:
-  minimum_variant_count: 2
