@@ -41,6 +41,7 @@ def get_fastq(wildcards):
 
 # get pairs of fastq files for fastp
 def get_fastq_pairs(wildcards):
+    if config["umi_extraction"][]
     return expand(
         "results/get_fastq/{sample}_{read}.fastq.gz",
         sample=wildcards.sample,

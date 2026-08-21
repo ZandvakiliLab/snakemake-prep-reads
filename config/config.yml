@@ -7,6 +7,12 @@ trimming:
   fastplong:
     extra: ""
 
+umi_extraction:
+  enabled: false  # Set to true to enable UMI extraction
+  tool: "umi_tools"
+  umi_tools:
+    extra: ""
+
 qc:
   multiqc:
     extra: "--verbose --dirs"
