@@ -1,19 +1,3 @@
-rule get_fastq:
-    input:
-        get_fastq,
-    output:
-        fastq="results/get_fastq/{sample}_{read}.fastq.gz",
-    log:
-        "results/get_fastq/{sample}_{read}.log",
-    conda:
-        "../envs/basic.yml"
-    message:
-        "obtaining fastq files"
-    shell:
-        "ln -s {input} {output.fastq};"
-        "echo 'made symbolic link from {input} to {output.fastq}' > {log}"
-
-
 rule fastp:
     input:
         sample=get_fastq_pairs,

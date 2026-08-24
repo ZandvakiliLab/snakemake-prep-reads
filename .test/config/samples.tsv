@@ -1,2 +1,2 @@
-sample	description	read1	read2
-spya20	S. pyogenes A20	data/spy_A20_R1.fastq.gz	data/spy_A20_R2.fastq.gz
+sample	description	accession	read1	read2
+sample1	test_dataset	SRR16301862	data/SRR16301862_1.fastq.gz	data/SRR16301862_2.fastq.gz

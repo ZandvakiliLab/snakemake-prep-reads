@@ -5,6 +5,28 @@ properties:
     type: string
     description: path to the sample sheet in tsv format
 
+  get_fastq:
+    type: object 
+    tool:
+      type: string
+      description: which tool to download fastq files (one of 'fastq-dump' or 'fasterq-dump') or if files are local ('local')
+      default: fasterq-dump
+      enum: 
+        - "fastq_dump"
+        - "fasterq_dump"
+        - "local"
+    fastq_dump:
+      type: object
+      properties: 
+        extra:
+          type: string
+          description: additional arguments to pass to fastq-dump
+    fasterq_dump:
+      type: object
+      properties: 
+        extra:
+          type: string
+          description: additional arguments to pass to fasterq-dump
   trimming:
     type: object
     properties:

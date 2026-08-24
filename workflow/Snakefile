@@ -6,6 +6,7 @@ configfile: "config/config.yml"
 # load rules
 # -----------------------------------------------------
 include: "rules/common.smk"
+include: "rules/get_fastq.smk"
 include: "rules/trim.smk"
 include: "rules/umi_extraction.smk"
 include: "rules/qc.smk"

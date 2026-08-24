@@ -5,7 +5,7 @@ rule fastqc:
         html="results/fastqc/{sample}_{read}_fastqc.html",
         zip="results/fastqc/{sample}_{read}_fastqc.zip",
     log:
-        "results/fastqc/{sample}.bwa.{read}.log",
+        "results/fastqc/{sample}_{read}.log",
     threads: 1
     resources:
         mem_mb=4096,

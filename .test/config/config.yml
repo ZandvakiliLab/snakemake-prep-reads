@@ -1,5 +1,13 @@
 samplesheet: "config/samples.tsv"
 
+get_fastq:
+  PE: True
+  tool: "local"
+  fastq_dump:
+    extra: "-X 100000"
+  fasterq_dump:
+    extra: ""
+
 trimming:
   tool: "fastp"
   fastp:
