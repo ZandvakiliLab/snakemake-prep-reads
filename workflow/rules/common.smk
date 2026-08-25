@@ -49,7 +49,7 @@ def get_fastq_pairs(wildcards):
             "results/{tool}/extract/{sample}_{read}.fastq.gz",
             sample=wildcards.sample,
             read=["read1", "read2"] if is_paired_end() else ["read1"],
-            tool=config["umi_extraction"]["tool"]
+            tool=config["umi_extraction"]["tool"],
         )
     else:
         return expand(
