@@ -19,7 +19,7 @@ umi_extraction:
   enabled: True  # Set to true to enable UMI extraction
   tool: "umi_tools"
   umi_tools:
-    extra: ""
+    extra: "--bc-pattern=NNNNNNNN --bc-pattern2=NNNNNNNN"
 
 qc:
   multiqc:
