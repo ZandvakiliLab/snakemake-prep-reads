@@ -4,26 +4,25 @@ properties:
   samplesheet:
     type: string
     description: path to the sample sheet in tsv format
-
   get_fastq:
-    type: object 
+    type: object
     tool:
       type: string
       description: which tool to download fastq files (one of 'fastq-dump' or 'fasterq-dump') or if files are local ('local')
       default: fasterq-dump
-      enum: 
+      enum:
         - "fastq_dump"
         - "fasterq_dump"
         - "local"
     fastq_dump:
       type: object
-      properties: 
+      properties:
         extra:
           type: string
           description: additional arguments to pass to fastq-dump
     fasterq_dump:
       type: object
-      properties: 
+      properties:
         extra:
           type: string
           description: additional arguments to pass to fasterq-dump
@@ -48,7 +47,6 @@ properties:
             description: additional arguments to pass to fastplong
     required:
       - tool
-
   umi_extraction:
     type: object
     properties:
@@ -68,7 +66,6 @@ properties:
             description: additional arguments to pass to umi_tools extract
     required:
       - enabled
-
   qc:
     type: object
     properties:
@@ -87,7 +84,6 @@ properties:
     required:
       - multiqc
       - fastqc
-
 required:
   - samplesheet
   - trimming

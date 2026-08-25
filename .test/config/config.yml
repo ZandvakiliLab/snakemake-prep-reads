@@ -1,26 +1,22 @@
 samplesheet: "config/samples.tsv"
-
 get_fastq:
-  PE: True
+  PE: true
   tool: "local"
   fastq_dump:
     extra: "-X 100000"
   fasterq_dump:
     extra: ""
-
 trimming:
   tool: "fastp"
   fastp:
     extra: ""
   fastplong:
     extra: ""
-
 umi_extraction:
-  enabled: True  # Set to true to enable UMI extraction
+  enabled: true  # Set to true to enable UMI extraction
   tool: "umi_tools"
   umi_tools:
     extra: "--bc-pattern=NNNNNNNN --bc-pattern2=NNNNNNNN"
-
 qc:
   multiqc:
     extra: "--verbose --dirs"
