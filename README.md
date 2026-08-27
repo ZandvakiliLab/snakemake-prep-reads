@@ -5,8 +5,8 @@
 This is a fork of nicely designed [snakemake-simple-mapping](https://github.com/MPUSP/snakemake-simple-mapping) repository. This fork removes any rules outside of preprocess reads and adds the following features: 
 
 1. UMI handling
-2. Fast5 handling [TODO]
-3. Download files directly from Sequence Read Archive (NCBI) and European Nucleotide Archive (ENA)
+2. Download files directly from Sequence Read Archive (NCBI) and European Nucleotide Archive (ENA)
+3. Fast5 handling [TODO]
 
 ## Authors
 
