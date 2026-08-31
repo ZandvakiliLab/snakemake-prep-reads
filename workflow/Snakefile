@@ -11,6 +11,9 @@ include: "rules/trim.smk"
 include: "rules/umi_extraction.smk"
 include: "rules/qc.smk"
 
+# container definition (optional)
+# -----------------------------------------------------
+containerized: "oras://ghcr.io/zandvakililab/snakemake-prep-reads:latest"
 
 # optional messages, log and error handling
 # -----------------------------------------------------
