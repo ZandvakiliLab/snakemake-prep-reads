@@ -1,0 +1,28 @@
+name: Linting and Testing
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  snakemake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Linting
+        uses: snakemake/snakemake-github-action@v2
+        with:
+          directory: ".test"
+          snakefile: "workflow/Snakefile"
+          args: "--lint"
+
+      - name: Testing
+        uses: snakemake/snakemake-github-action@v2
+        with:
+          directory: ".test"
+          install-apptainer: true
+          snakefile: "workflow/Snakefile"
+          args: "--cores 1 --sdm apptainer conda --conda-cleanup-pkgs cache"
+          stagein: "" # additional preliminary commands to run (can be multiline)
+          show-disk-usage-on-error: true
