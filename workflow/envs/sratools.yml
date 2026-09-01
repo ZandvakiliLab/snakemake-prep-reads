@@ -2,6 +2,7 @@ name: sra-tools
 channels:
   - bioconda
   - conda-forge
+  - nodefaults
 dependencies:
   - _openmp_mutex=4.5=20_gnu
   - c-ares=1.34.8=h280c20c_1
