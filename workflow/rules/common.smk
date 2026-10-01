@@ -38,8 +38,12 @@ def get_fastq(wildcards):
     else:
         accession = samples.loc[wildcards.sample]["accession"]
         tool = config["get_fastq"]["tool"]
-        read = "1" if wildcards.read == "read1" else "2"
-        return f"results/sra/{tool}/{accession}_{read}.fastq.gz"
+        if is_paired_end():
+            read = "1" if wildcards.read == "read1" else "2"
+            return f"results/sra/{tool}/{accession}_{read}.fastq.gz"
+        else:
+            return f"results/sra/{tool}/{accession}.fastq.gz"
+
 
 
 # get pairs of fastq files for trimming

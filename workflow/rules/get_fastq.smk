@@ -2,7 +2,7 @@ rule fastq_dump:
     output:
         fastq=expand(
             "results/sra/fastq_dump/{{accession}}{read}.fastq.gz",
-            read=["_1", "_2"] if is_paired_end() else [""],
+            read=["_1", "_2"] if is_paired_end() else ["_1"],
         ),
     log:
         "results/sra/fastq_dump/{accession}.log",
@@ -12,12 +12,18 @@ rule fastq_dump:
     params:
         outdir=lambda w, output: os.path.dirname(output.fastq[0]),
         extra=config["get_fastq"]["fastq_dump"]["extra"],
-        paired="--split-3" if is_paired_end else "",
+        paired_flag="--split-3" if is_paired_end() else "",
+        is_paired="true" if is_paired_end() else "false",
     shell:
         """
-        fastq-dump {params.extra} {params.paired} --outdir {params.outdir} {wildcards.accession} &>{log}
-        pigz -p {threads} -f {params.outdir}/{wildcards.accession}_1.fastq
-        pigz -p {threads} -f {params.outdir}/{wildcards.accession}_2.fastq
+        fastq-dump {params.extra} {params.paired_flag} --outdir {params.outdir} {wildcards.accession} &>{log}
+        if [ {params.is_paired} = "true" ]; then
+            pigz -p {threads} -f {params.outdir}/{wildcards.accession}_1.fastq
+            pigz -p {threads} -f {params.outdir}/{wildcards.accession}_2.fastq
+        else
+            pigz -p {threads} -f {params.outdir}/{wildcards.accession}.fastq
+            mv {params.outdir}/{wildcards.accession}.fastq.gz {params.outdir}/{wildcards.accession}_1.fastq.gz
+        fi
         """
 
 
