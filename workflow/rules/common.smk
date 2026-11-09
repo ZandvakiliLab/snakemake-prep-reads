@@ -51,9 +51,9 @@ def get_fastq_pairs(wildcards):
     if config["umi_extraction"]["enabled"]:
         return expand(
             "results/{tool}/extract/{sample}_{read}.fastq.gz",
+            tool=config["umi_extraction"]["tool"],
             sample=wildcards.sample,
             read=["read1", "read2"] if is_paired_end() else ["read1"],
-            tool=config["umi_extraction"]["tool"],
         )
     else:
         return expand(
@@ -67,7 +67,13 @@ def get_fastq_pairs(wildcards):
 def get_multiqc_input(wildcards):
     result = []
     result += expand(
-        "results/fastqc/{sample}_{read}_fastqc.{ext}",
+        "results/fastqc/pre/{sample}_{read}_fastqc.{ext}",
+        sample=samples.index,
+        read=["read1", "read2"] if is_paired_end() else ["read1"],
+        ext=["html", "zip"],
+    )
+    result += expand(
+        "results/fastqc/post/{sample}_{read}_fastqc.{ext}",
         sample=samples.index,
         read=["read1", "read2"] if is_paired_end() else ["read1"],
         ext=["html", "zip"],

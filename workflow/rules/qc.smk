@@ -1,11 +1,34 @@
-rule fastqc:
+rule pre_fastqc:
     input:
         fastq="results/get_fastq/{sample}_{read}.fastq.gz",
     output:
-        html="results/fastqc/{sample}_{read}_fastqc.html",
-        zip="results/fastqc/{sample}_{read}_fastqc.zip",
+        html="results/fastqc/pre/{sample}_{read}_fastqc.html",
+        zip="results/fastqc/pre/{sample}_{read}_fastqc.zip",
     log:
-        "results/fastqc/{sample}_{read}.log",
+        "results/fastqc/pre/{sample}_{read}.log",
+    threads: 1
+    resources:
+        mem_mb=4096,
+    params:
+        extra=config["qc"]["fastqc"]["extra"],
+    message:
+        "checking fastq files with FastQC"
+    wrapper:
+        "v7.6.0/bio/fastqc"
+
+
+rule post_fastqc:
+    input:
+        fastq=lambda wildcards: "results/{tool}/{sample}_{read}.fastq.gz".format(
+            tool=config["trimming"]["tool"],
+            sample=wildcards.sample,
+            read=wildcards.read,
+        ),
+    output:
+        html="results/fastqc/post/{sample}_{read}_fastqc.html",
+        zip="results/fastqc/post/{sample}_{read}_fastqc.zip",
+    log:
+        "results/fastqc/post/{sample}_{read}.log",
     threads: 1
     resources:
         mem_mb=4096,
