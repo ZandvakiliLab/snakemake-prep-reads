@@ -36,4 +36,4 @@ onerror:
 rule all:
     default_target: True
     input:
-        "results/multiqc/multiqc_report.html",
+        directory("results/multiqc"),

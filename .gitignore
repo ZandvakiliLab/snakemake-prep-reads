@@ -7,6 +7,8 @@ logs/**
 .test/config/*
 .test/resources/*
 .test/.cache/*
+.test/report.*
+.test/report
 .vscode/*
 *.Rdata
 *.RData

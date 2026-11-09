@@ -45,7 +45,6 @@ def get_fastq(wildcards):
             return f"results/sra/{tool}/{accession}.fastq.gz"
 
 
-
 # get pairs of fastq files for trimming
 def get_fastq_pairs(wildcards):
     if config["umi_extraction"]["enabled"]:
@@ -66,12 +65,6 @@ def get_fastq_pairs(wildcards):
 # get input for multiqc
 def get_multiqc_input(wildcards):
     result = []
-    result += expand(
-        "results/fastqc/pre/{sample}_{read}_fastqc.{ext}",
-        sample=samples.index,
-        read=["read1", "read2"] if is_paired_end() else ["read1"],
-        ext=["html", "zip"],
-    )
     result += expand(
         "results/fastqc/post/{sample}_{read}_fastqc.{ext}",
         sample=samples.index,

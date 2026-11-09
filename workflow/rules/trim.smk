@@ -2,7 +2,7 @@ rule fastp:
     input:
         sample=get_fastq_pairs,
     output:
-        html="results/fastp/{sample}.html",
+        html=report("results/fastp/{sample}.html", category="Trimming"),
         json="results/fastp/{sample}.json",
         trimmed=expand(
             "results/fastp/{{sample}}_{read}.fastq.gz",
@@ -25,7 +25,7 @@ rule fastplong:
     input:
         sample=get_fastq_pairs,
     output:
-        html="results/fastplong/{sample}.html",
+        html=report("results/fastplong/{sample}.html", category="Trimming"),
         json="results/fastplong/{sample}.json",
         trimmed=expand(
             "results/fastplong/{{sample}}_{read}.fastq.gz",
