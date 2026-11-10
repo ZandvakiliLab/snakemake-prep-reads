@@ -37,3 +37,9 @@ rule all:
     default_target: True
     input:
         directory("results/multiqc"),
+        expand(
+            "results/fastqc/pre/{sample}_{read}_fastqc.{ext}",
+            sample=samples.index,
+            read=["read1", "read2"] if is_paired_end() else ["read1"],
+            ext=["html", "zip"],
+        )
