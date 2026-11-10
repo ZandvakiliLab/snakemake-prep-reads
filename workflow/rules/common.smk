@@ -61,7 +61,6 @@ def get_fastq_pairs(wildcards):
             read=["read1", "read2"] if is_paired_end() else ["read1"],
         )
 
-
 # get input for multiqc
 def get_multiqc_input(wildcards):
     result = []
@@ -71,8 +70,19 @@ def get_multiqc_input(wildcards):
         read=["read1", "read2"] if is_paired_end() else ["read1"],
         ext=["html", "zip"],
     )
-    result += expand(
-        "results/fastp/{sample}.json",
-        sample=samples.index,
-    )
+    if config["trimming"]["tool"] == "fastp":
+        result += expand(
+            "results/fastp/{sample}.html",
+            sample=samples.index,
+        )
+    elif config["trimming"]["tool"] == "fastplong":
+        result += expand(
+            "results/fastplong/{sample}.html",
+            sample=samples.index,
+        )
+    elif config["trimming"]["tool"] == "cutadapt":
+        result += expand(
+            "results/cutadapt/{sample}.qc.txt",
+            sample=samples.index,
+        )
     return result

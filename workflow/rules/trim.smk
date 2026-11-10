@@ -53,3 +53,36 @@ rule fastplong:
             {params.extra} \
             >{log} 2>&1
         """
+
+
+if config["get_fastq"]["PE"] == True:
+    rule cutadapt:
+        input:
+            get_fastq_pairs,
+        output:
+            fastq1="results/cutadapt/{sample}_read1.fastq.gz",
+            fastq2="results/cutadapt/{sample}_read2.fastq.gz",
+            qc="results/cutadapt/{sample}.qc.txt",
+        log:
+            "results/cutadapt/{sample}.log",
+        threads: 4  # set desired number of threads here
+        params:
+            adapters=config["trimming"]["cutadapt"]["adapters"],
+            extra=config["trimming"]["cutadapt"]["extra"],
+        wrapper:
+            "v9.19.4/bio/cutadapt/pe"
+else:
+    rule cutadapt:
+        input:
+            get_fastq_pairs,
+        output:
+            fastq="results/cutadapt/{sample}_read1.fastq.gz",
+            qc="results/cutadapt/{sample}.qc.txt",
+        log:
+            "results/cutadapt/{sample}.log",
+        threads: 4  # set desired number of threads here
+        params:
+            adapters=config["trimming"]["cutadapt"]["adapters"],
+            extra=config["trimming"]["cutadapt"]["extra"],
+        wrapper:
+            "v9.19.4/bio/cutadapt/se"

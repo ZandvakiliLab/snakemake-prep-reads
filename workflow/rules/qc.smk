@@ -60,10 +60,10 @@ rule multiqc:
         ),
     log:
         "results/multiqc/multiqc.log",
+    conda:
+        "../envs/multiqc.yaml"
     params:
         extra=config["qc"]["multiqc"]["extra"],
-    conda:
-        "../envs/multiqc.yaml",
     message:
         "generating MultiQC report for seq data"
     shell:
@@ -71,5 +71,5 @@ rule multiqc:
         multiqc {params.extra} --force \
             --outdir {output} \
             --filename multiqc_report.html \
-            {input} > {log} 2>&1
+            {input} >{log} 2>&1
         """
