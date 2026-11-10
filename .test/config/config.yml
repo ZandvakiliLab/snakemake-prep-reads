@@ -7,10 +7,13 @@ get_fastq:
   fasterq_dump:
     extra: ""
 trimming:
-  tool: "fastp"
+  tool: "cutadapt"
   fastp:
     extra: ""
   fastplong:
+    extra: ""
+  cutadapt:
+    adapters: "-a TGGAATTCTCGGGTGCCAAGG -A GATCGTCGGACTGTAGAACTCTGAAC"
     extra: ""
 umi_extraction:
   enabled: true  # Set to true to enable UMI extraction

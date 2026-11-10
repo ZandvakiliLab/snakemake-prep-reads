@@ -31,7 +31,7 @@ properties:
     properties:
       tool:
         type: string
-        description: processing tool to use, one of 'fastp' or 'fastplong'
+        description: processing tool to use, one of 'fastp' or 'fastplong' or 'cutadapt'
         default: fastp
       fastp:
         type: object
@@ -45,6 +45,15 @@ properties:
           extra:
             type: string
             description: additional arguments to pass to fastplong
+      cutadapt:
+        type: object
+        properties:
+          adapters:
+            type: string
+            description: adapter sequence for cutadapt
+          extra:
+            type: string
+            description: additional arguments to pass to cutadapt
     required:
       - tool
   umi_extraction:
